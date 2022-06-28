@@ -2,7 +2,7 @@
 ## data: conflicts between countries during the Cold War, every five years from 1950 to 1985
 
 rm(list=ls())
-war = read.table('war.txt')
+war = read.table('Summer_School_2022_VERA/Additional_material/war.txt')
 war = as.matrix(war)
 str(war)
 
@@ -10,7 +10,7 @@ war = 1*(war <  0)
 
 isSymmetric(war)
 lattice::levelplot(war)
-
+corrplot::corr(war)
 
 library(igraph)
 
@@ -135,6 +135,7 @@ plogis(m0$coef)
 #the number of completed triangles in the network
 #Triangles measure transitivity and clustering in networks.
 m1 = ergm(net2~edges+triangles, estimate = 'MPLE')
+
 summary(m1)
 
 ergmMPLE(net2~edges+triangles) #ERGM Predictors and response for logistic regression calculation of MPLE
